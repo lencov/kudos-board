@@ -38,7 +38,7 @@ class BoardController {
         } catch (error) {
             next(error);
         }
-      }
+    }
 
     // DELETE /api/boards/:id
     async deleteBoard(req, res, next) {

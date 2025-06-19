@@ -1,0 +1,141 @@
+### Board API Testing Guide
+
+# Base URL: http://localhost:3001
+
+### Health Check
+GET http://localhost:3001/api/health
+
+###
+
+### Get All Boards
+GET http://localhost:3001/api/boards
+
+###
+
+### Get All Boards by Category (celebration)
+GET http://localhost:3001/api/boards?category=celebration
+
+###
+
+### Get All Boards by Category (thank you)
+GET http://localhost:3001/api/boards?category=thank%20you
+
+###
+
+### Get All Boards by Category (inspiration)
+GET http://localhost:3001/api/boards?category=inspiration
+
+###
+
+### Get Board by ID (replace {board-id} with actual board ID)
+GET http://localhost:3001/api/boards/{board-id}
+
+###
+
+### Create New Board - Celebration
+POST http://localhost:3001/api/boards
+Content-Type: application/json
+
+{
+  "title": "Team Celebration",
+  "description": "Celebrating our amazing team achievements this quarter!",
+  "category": "celebration",
+  "imageURL": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500",
+  "author": "John Doe"
+}
+
+###
+
+### Create New Board - Thank You
+POST http://localhost:3001/api/boards
+Content-Type: application/json
+
+{
+  "title": "Thank You Board",
+  "description": "A place to share gratitude and appreciation",
+  "category": "thank you",
+  "imageURL": "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=500",
+  "author": "Jane Smith"
+}
+
+###
+
+### Create New Board - Inspiration
+POST http://localhost:3001/api/boards
+Content-Type: application/json
+
+{
+  "title": "Daily Inspiration",
+  "description": "Share inspiring quotes and moments",
+  "category": "inspiration",
+  "imageURL": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500",
+  "author": "Alex Johnson"
+}
+
+###
+
+### Create New Board - Minimal Required Fields
+POST http://localhost:3001/api/boards
+Content-Type: application/json
+
+{
+  "title": "Simple Board",
+  "description": "A basic board with minimal information",
+  "category": "celebration",
+  "imageURL": "https://images.unsplash.com/photo-1533134486753-c833f0ed4866?w=500"
+}
+
+###
+
+### Delete Board by ID (replace {board-id} with actual board ID)
+DELETE http://localhost:3001/api/boards/{board-id}
+
+###
+
+### Test Cases for Validation Errors
+
+### Create Board - Missing Title (should return 400 error)
+POST http://localhost:3001/api/boards
+Content-Type: application/json
+
+{
+  "description": "Board without title",
+  "category": "celebration",
+  "imageURL": "https://images.unsplash.com/photo-1533134486753-c833f0ed4866?w=500"
+}
+
+###
+
+### Create Board - Invalid Category (should return 400 error)
+POST http://localhost:3001/api/boards
+Content-Type: application/json
+
+{
+  "title": "Invalid Category Board",
+  "description": "Testing invalid category",
+  "category": "invalid-category",
+  "imageURL": "https://images.unsplash.com/photo-1533134486753-c833f0ed4866?w=500"
+}
+
+###
+
+### Create Board - Invalid URL (should return 400 error)
+POST http://localhost:3001/api/boards
+Content-Type: application/json
+
+{
+  "title": "Invalid URL Board",
+  "description": "Testing invalid image URL",
+  "category": "celebration",
+  "imageURL": "not-a-valid-url"
+}
+
+###
+
+### Get Non-existent Board (should return 404 error)
+GET http://localhost:3001/api/boards/non-existent-id
+
+###
+
+### Delete Non-existent Board (should return error)
+DELETE http://localhost:3001/api/boards/non-existent-id

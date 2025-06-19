@@ -1,4 +1,4 @@
-const validCategories = require('../constants/validCategories');
+const { validCategories } = require('../../constants');
 
 const validateBoard = (req, res, next) => {
     const { title, description, category, imageURL } = req.body;
@@ -19,14 +19,14 @@ const validateBoard = (req, res, next) => {
 
     if (missingFields.length > 0) {
         return res.status(400).json({
-            error: `Missing fields: ${missingFields.join(', ')}`
+            error: `Missing fields: ${missingFields.join(', ')}`,
         });
     }
 
     if (!validCategories.includes(category)) {
         return res.status(400).json({
             error: `Invalid category: ${category}`,
-            details: 'Must be one of: ' + validCategories.join(', ')
+            details: 'Must be one of: ' + validCategories.join(', '),
         });
     }
 
@@ -34,7 +34,7 @@ const validateBoard = (req, res, next) => {
         new URL(imageURL);
     } catch {
         return res.status(400).json({
-            error: `Invalid URL: ${imageURL}`
+            error: `Invalid URL: ${imageURL}`,
         });
     }
     next();
