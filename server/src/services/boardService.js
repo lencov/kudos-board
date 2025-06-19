@@ -1,19 +1,19 @@
-const { PrismaClient } = require("@prisma/client");
+const { PrismaClient } = require('../generated/prisma');
 const prisma = new PrismaClient();
 
 class BoardService {
 
     // get all boards with optional category filter
     async getAllBoards(category) {
-        const filter = this.buildCategoryFilter(category)
+        const filter = this.buildCategoryFilter(category);
 
         const boards = await prisma.board.findMany({
             where: filter,
             include: {
-                cards: true
+                cards: true,
             },
-            orderBy: { createdAt: 'desc' }
-        })
+            orderBy: { createdAt: 'desc' },
+        });
 
         return boards;
     }
@@ -27,10 +27,10 @@ class BoardService {
                     orderBy: [
                         { isPinned: 'desc' },
                         { pinnedAt: 'desc' },
-                        { createdAt: 'desc' }
-                    ]
+                        { createdAt: 'desc' },
+                    ],
                 },
-            }
+            },
         });
 
         return board;
@@ -38,14 +38,14 @@ class BoardService {
 
     async createBoard(boardData) {
         const board = await prisma.board.create({
-          data: {
-            title: boardData.title,
-            description: boardData.description,
-            category: boardData.category,
-            imageURL: boardData.imageURL,
-            author: boardData.author || null
-          },
-          include: { cards: true }
+            data: {
+                title: boardData.title,
+                description: boardData.description,
+                category: boardData.category,
+                imageURL: boardData.imageURL,
+                author: boardData.author || null,
+            },
+            include: { cards: true },
         });
 
         return board;
@@ -53,7 +53,7 @@ class BoardService {
 
     async deleteBoard(id) {
         const deletedBoard = await prisma.board.delete({
-          where: { id }
+            where: { id },
         });
 
         return deletedBoard;
@@ -62,11 +62,11 @@ class BoardService {
     buildCategoryFilter(category) {
         // TODO: add filter for recent boards
         if (category !== 'all'){
-            return { category: category }
+            return { category: category };
         }else{
-            return {}
+            return {};
         }
     }
 }
 
-module.exports = BoardService;
+module.exports = new BoardService();
