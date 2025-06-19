@@ -5,6 +5,7 @@ require('dotenv').config();
 const errorHandler = require('./middleware/errorHandler');
 
 const boardRoutes = require('./routes/boardRoutes');
+const cardRoutes = require('./routes/cardRoutes');
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -17,6 +18,7 @@ app.get('/api/health', (req, res) => {
 });
 
 app.use('/api/boards', boardRoutes);
+app.use('/api/cards', cardRoutes);
 
 app.use(errorHandler);
 

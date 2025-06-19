@@ -1,0 +1,201 @@
+### Card API Testing Guide
+
+# Base URL: http://localhost:3001
+
+### Health Check
+GET http://localhost:3001/api/health
+
+###
+
+### Get All Cards
+GET http://localhost:3001/api/cards
+
+###
+
+### Get All Cards by Board ID
+GET http://localhost:3001/api/cards?boardId={board-id}
+
+###
+
+### Get Card by ID
+GET http://localhost:3001/api/cards/{card-id}
+
+###
+
+### Create New Card - Celebration
+POST http://localhost:3001/api/cards
+Content-Type: application/json
+
+{
+  "title": "Amazing Work!",
+  "description": "Thank you for your outstanding contribution to the project. Your dedication really shows!",
+  "gifURL": "https://media.giphy.com/media/26u4cqiYI30juCOGY/giphy.gif",
+  "owner": "John Doe",
+  "boardId": "{board-id}"
+}
+
+###
+
+### Create New Card - Thank You
+POST http://localhost:3001/api/cards
+Content-Type: application/json
+
+{
+  "title": "Grateful for Your Help",
+  "description": "Your support during the deadline crunch was incredible. Couldn't have done it without you!",
+  "gifURL": "https://media.giphy.com/media/3oz8xAFtqoOUUrsh7W/giphy.gif",
+  "owner": "Jane Smith",
+  "boardId": "{board-id}"
+}
+
+###
+
+### Create New Card - Inspiration
+POST http://localhost:3001/api/cards
+Content-Type: application/json
+
+{
+  "title": "Keep Going!",
+  "description": "Remember: 'The only way to do great work is to love what you do.' - Steve Jobs",
+  "gifURL": "https://media.giphy.com/media/l2JhOVy5NaPuqvZmg/giphy.gif",
+  "owner": "Alex Johnson",
+  "boardId": "{board-id}"
+}
+
+###
+
+### Create New Card - Minimal Required Fields
+POST http://localhost:3001/api/cards
+Content-Type: application/json
+
+{
+  "title": "Simple Card",
+  "description": "A basic card with minimal information",
+  "gifURL": "https://media.giphy.com/media/26BRuo6sLetdllPAQ/giphy.gif",
+  "boardId": "{board-id}"
+}
+
+###
+
+### Update Card
+PUT http://localhost:3001/api/cards/{card-id}
+Content-Type: application/json
+
+{
+  "title": "Updated Card Title",
+  "description": "This card has been updated with new content",
+  "gifURL": "https://media.giphy.com/media/3o7abKhOpu0NwenH3O/giphy.gif",
+  "owner": "Updated Owner"
+}
+
+###
+
+### Like a Card (increment like count)
+PUT http://localhost:3001/api/cards/{card-id}/like
+
+###
+
+### Pin/Unpin a Card
+PUT http://localhost:3001/api/cards/{card-id}/pin
+
+###
+
+### Delete Card by ID
+DELETE http://localhost:3001/api/cards/{card-id}
+
+###
+
+### Test Cases for Validation Errors
+
+### Create Card - Missing Title (should return 400 error)
+POST http://localhost:3001/api/cards
+Content-Type: application/json
+
+{
+  "description": "Card without title",
+  "gifURL": "https://media.giphy.com/media/26BRuo6sLetdllPAQ/giphy.gif",
+  "boardId": "{board-id}"
+}
+
+###
+
+### Create Card - Missing Description (should return 400 error)
+POST http://localhost:3001/api/cards
+Content-Type: application/json
+
+{
+  "title": "Card Without Description",
+  "gifURL": "https://media.giphy.com/media/26BRuo6sLetdllPAQ/giphy.gif",
+  "boardId": "{board-id}"
+}
+
+###
+
+### Create Card - Missing GIF URL (should return 400 error)
+POST http://localhost:3001/api/cards
+Content-Type: application/json
+
+{
+  "title": "Card Without GIF",
+  "description": "This card is missing a GIF URL",
+  "boardId": "{board-id}"
+}
+
+###
+
+### Create Card - Missing Board ID (should return 400 error)
+POST http://localhost:3001/api/cards
+Content-Type: application/json
+
+{
+  "title": "Card Without Board ID",
+  "description": "This card is missing a board ID",
+  "gifURL": "https://media.giphy.com/media/26BRuo6sLetdllPAQ/giphy.gif"
+}
+
+###
+
+### Create Card - Invalid GIF URL (should return 400 error)
+POST http://localhost:3001/api/cards
+Content-Type: application/json
+
+{
+  "title": "Invalid GIF URL Card",
+  "description": "Testing invalid GIF URL",
+  "gifURL": "not-a-valid-url",
+  "boardId": "{board-id}"
+}
+
+###
+
+### Get Non-existent Card (should return 404 error)
+GET http://localhost:3001/api/cards/non-existent-id
+
+###
+
+### Update Non-existent Card (should return 404 error)
+PUT http://localhost:3001/api/cards/non-existent-id
+Content-Type: application/json
+
+{
+  "title": "Updated Title",
+  "description": "Updated description",
+  "gifURL": "https://media.giphy.com/media/26BRuo6sLetdllPAQ/giphy.gif"
+}
+
+###
+
+### Like Non-existent Card (should return 404 error)
+PUT http://localhost:3001/api/cards/non-existent-id/like
+
+###
+
+### Pin Non-existent Card (should return 404 error)
+PUT http://localhost:3001/api/cards/non-existent-id/pin
+
+###
+
+### Delete Non-existent Card (should return error)
+DELETE http://localhost:3001/api/cards/non-existent-id
+
+###
