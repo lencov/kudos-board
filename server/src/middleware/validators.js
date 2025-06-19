@@ -74,4 +74,36 @@ const validateCard = (req, res, next) => {
     next();
 };
 
-module.exports = { validateBoard, validateCard };
+const validateComment = (req, res, next) => {
+    const { message, cardId } = req.body;
+
+    const missingFields = [];
+    if (!message) {
+        missingFields.push('message');
+    }
+    if (!cardId) {
+        missingFields.push('cardId');
+    }
+
+    if (missingFields.length > 0) {
+        return res.status(400).json({
+            error: `Missing fields: ${missingFields.join(', ')}`,
+        });
+    }
+
+    if (message.trim().length === 0) {
+        return res.status(400).json({
+            error: 'Message cannot be empty',
+        });
+    }
+
+    if (message.length > 1000) {
+        return res.status(400).json({
+            error: 'Message cannot exceed 1000 characters',
+        });
+    }
+
+    next();
+};
+
+module.exports = { validateBoard, validateCard, validateComment };
