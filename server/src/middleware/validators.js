@@ -40,4 +40,38 @@ const validateBoard = (req, res, next) => {
     next();
 };
 
-module.exports = { validateBoard };
+const validateCard = (req, res, next) => {
+    const { title, description, gifURL, boardId } = req.body;
+
+    const missingFields = [];
+    if (!title) {
+        missingFields.push('title');
+    }
+    if (!description) {
+        missingFields.push('description');
+    }
+    if (!gifURL) {
+        missingFields.push('gifURL');
+    }
+    if (!boardId) {
+        missingFields.push('boardId');
+    }
+
+    if (missingFields.length > 0) {
+        return res.status(400).json({
+            error: `Missing fields: ${missingFields.join(', ')}`,
+        });
+    }
+
+    try {
+        new URL(gifURL);
+    } catch {
+        return res.status(400).json({
+            error: `Invalid URL: ${gifURL}`,
+        });
+    }
+
+    next();
+};
+
+module.exports = { validateBoard, validateCard };
