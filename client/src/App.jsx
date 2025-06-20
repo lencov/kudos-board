@@ -3,6 +3,7 @@ import './App.css'
 import SearchBar from './SearchBar'
 import CategoryFilter from './CategoryFilter'
 import BoardList from './BoardList'
+import BoardDetail from './BoardDetail'
 import { getAllBoards, getBoardsByCategory, searchBoards, deleteBoard } from './kudosBoardService'
 import { BOARD_CATEGORIES, VIEW_TYPES } from './constants'
 
@@ -95,9 +96,6 @@ const App = () => {
                         <button onClick={handleCreateBoard}>Create New Board</button>
                     </>
                 )}
-                {currentView === VIEW_TYPES.BOARD_DETAILS && (
-                    <button onClick={handleBackToHome}>← Back to Home</button>
-                )}
             </header>
 
             <main>
@@ -116,9 +114,10 @@ const App = () => {
                 )}
 
                 {currentView === VIEW_TYPES.BOARD_DETAILS && selectedBoard && (
-                    <>
-                        {/* TODO: add BoardDetail component */}
-                    </>
+                    <BoardDetail
+                        board={selectedBoard}
+                        onBack={handleBackToHome}
+                    />
                 )}
 
                 {/* TODO: Add CreateBoardModal component */}
