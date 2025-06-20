@@ -61,7 +61,9 @@ function GifSearch({ onGifSelect, selectedGifUrl }) {
         handleSearch();
     };
 
-    const handleClearSearch = () => {
+    const handleClearSearch = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         setSearchQuery('');
         setHasSearched(false);
         loadTrendingGifs();
@@ -117,7 +119,15 @@ function GifSearch({ onGifSelect, selectedGifUrl }) {
                 ) : error ? (
                     <div className="gif-error">
                         <p>{error}</p>
-                        <button onClick={loadTrendingGifs} className="retry-button">
+                        <button
+                            type="button"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                loadTrendingGifs();
+                            }}
+                            className="retry-button"
+                        >
                             Load Trending GIFs
                         </button>
                     </div>
