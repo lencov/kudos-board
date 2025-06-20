@@ -5,6 +5,7 @@ import CategoryFilter from './CategoryFilter'
 import BoardList from './BoardList'
 import BoardDetail from './BoardDetail'
 import CreateBoardModal from './CreateBoardModal'
+import ThemeToggle from './ThemeToggle'
 import { getAllBoards, getBoardsByCategory, searchBoards, deleteBoard } from './kudosBoardService'
 import { BOARD_CATEGORIES, VIEW_TYPES } from './constants'
 
@@ -87,6 +88,7 @@ const App = () => {
         <div className="App">
             <header>
                 <h1>Kudos Board</h1>
+                <ThemeToggle />
                 {currentView === VIEW_TYPES.HOME && (
                     <>
                         <SearchBar onSubmit={handleSearchSubmit} onClear={handleClearSearch} />
