@@ -1,0 +1,71 @@
+.BoardList {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.BoardList-header {
+    margin-bottom: 2rem;
+}
+
+.BoardList-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0;
+}
+
+.BoardList-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.BoardList-empty {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #6b7280;
+}
+
+.BoardList-empty h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #374151;
+    margin: 0 0 0.5rem 0;
+}
+
+.BoardList-empty p {
+    font-size: 1rem;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .BoardList {
+        padding: 0.5rem;
+    }
+
+    .BoardList-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .BoardList-header {
+        margin-bottom: 1rem;
+    }
+
+    .BoardList-header h2 {
+        font-size: 1.25rem;
+    }
+
+    .BoardList-empty {
+        padding: 2rem 1rem;
+    }
+}
+
+@media (min-width: 1025px) {
+    .BoardList-grid {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    }
+}

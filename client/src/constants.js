@@ -24,3 +24,5 @@ export const VIEW_TYPES = {
   HOME: 'home',
   BOARD_DETAILS: 'board-detail'
 };
+
+export const fallbackImage = 'https://placeholder.com/image'; // TODO: replace with real image URL
