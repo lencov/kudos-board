@@ -1,0 +1,39 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --border-color: #ddd;
+  --button-bg: #007bff;
+  --hover-bg: #f5f5f5;
+}
+
+[data-theme="dark"] {
+  --bg-color: #222;
+  --text-color: #eee;
+  --border-color: #555;
+  --button-bg: #0d6efd;
+  --hover-bg: #333;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: system-ui, sans-serif;
+  margin: 0;
+}
+
+button {
+  background-color: var(--button-bg);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input, textarea {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 8px;
+}
