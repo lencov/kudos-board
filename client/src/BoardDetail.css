@@ -9,16 +9,13 @@
 }
 
 .back-button {
-    background: #f5f5f5;
-    border: 1px solid #ddd;
+    background: var(--hover-bg);
+    border: 1px solid var(--border-color);
     padding: 0.5rem 1rem;
     border-radius: 4px;
     cursor: pointer;
     margin-bottom: 1rem;
-}
-
-.back-button:hover {
-    background: #e9e9e9;
+    color: var(--text-color);
 }
 
 .board-info {
@@ -36,20 +33,21 @@
 
 .board-details h1 {
     font-size: 2rem;
-    color: #333;
+    color: var(--text-color);
     margin: 0 0 0.5rem 0;
 }
 
 .board-description {
-    color: #666;
+    color: var(--text-color);
+    opacity: 0.7;
     font-size: 1rem;
     line-height: 1.5;
     margin: 0 0 1rem 0;
 }
 
 .board-category {
-    background: #f0f0f0;
-    color: #555;
+    background: var(--hover-bg);
+    color: var(--text-color);
     padding: 0.25rem 0.5rem;
     border-radius: 4px;
     font-size: 0.9rem;
@@ -57,7 +55,8 @@
 }
 
 .board-author {
-    color: #888;
+    color: var(--text-color);
+    opacity: 0.6;
     font-size: 0.9rem;
     font-style: italic;
 }
@@ -69,7 +68,7 @@
 }
 
 .cards-section {
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border-color);
     padding-top: 2rem;
 }
 
@@ -82,12 +81,12 @@
 
 .cards-header h2 {
     font-size: 1.5rem;
-    color: #333;
+    color: var(--text-color);
     margin: 0;
 }
 
 .create-card-button {
-    background: #007bff;
+    background: var(--button-bg);
     color: white;
     border: none;
     padding: 0.5rem 1rem;
@@ -95,24 +94,22 @@
     cursor: pointer;
 }
 
-.create-card-button:hover {
-    background: #0056b3;
-}
-
 .loading {
     text-align: center;
     padding: 2rem;
-    color: #666;
+    color: var(--text-color);
+    opacity: 0.7;
 }
 
 .no-cards {
     text-align: center;
     padding: 3rem;
-    color: #666;
+    color: var(--text-color);
+    opacity: 0.7;
 }
 
 .no-cards h3 {
-    color: #333;
+    color: var(--text-color);
     margin-bottom: 0.5rem;
 }
 
@@ -123,8 +120,8 @@
 }
 
 .card-item {
-    background: white;
-    border: 1px solid #ddd;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 1rem;
     position: relative;
@@ -132,12 +129,13 @@
 
 .card-content h3 {
     font-size: 1.1rem;
-    color: #333;
+    color: var(--text-color);
     margin: 0 0 0.5rem 0;
 }
 
 .card-content p {
-    color: #666;
+    color: var(--text-color);
+    opacity: 0.7;
     font-size: 0.9rem;
     line-height: 1.4;
     margin: 0 0 1rem 0;
@@ -152,7 +150,8 @@
 }
 
 .card-author {
-    color: #888;
+    color: var(--text-color);
+    opacity: 0.6;
     font-size: 0.8rem;
     font-style: italic;
     text-align: right;
@@ -164,20 +163,17 @@
     align-items: center;
     margin-top: 1rem;
     padding-top: 0.5rem;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border-color);
 }
 
 .upvote-button {
-    background: #f8f9fa;
-    border: 1px solid #ddd;
+    background: var(--hover-bg);
+    border: 1px solid var(--border-color);
     padding: 0.25rem 0.5rem;
     border-radius: 4px;
     cursor: pointer;
     font-size: 0.9rem;
-}
-
-.upvote-button:hover {
-    background: #e9ecef;
+    color: var(--text-color);
 }
 
 .pinned-indicator {
@@ -186,18 +182,13 @@
 
 .pin-button,
 .delete-card-button {
-    background: white;
-    border: 1px solid #ddd;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     width: 30px;
     height: 30px;
     cursor: pointer;
     font-size: 0.9rem;
-}
-
-.pin-button:hover,
-.delete-card-button:hover {
-    background: #f5f5f5;
 }
 
 /* Mobile */

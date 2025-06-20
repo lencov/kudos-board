@@ -5,14 +5,15 @@
 }
 
 header {
-  background: #f8f9fa;
+  background: var(--hover-bg);
   padding: 1rem;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--border-color);
+  position: relative;
 }
 
 header h1 {
   margin: 0 0 1rem 0;
-  color: #333;
+  color: var(--text-color);
   text-align: center;
 }
 
@@ -25,17 +26,13 @@ header > *:last-child {
 }
 
 header button {
-  background: #007bff;
+  background: var(--button-bg);
   color: white;
   border: none;
   padding: 0.5rem 1rem;
   cursor: pointer;
   display: block;
   margin: 0 auto;
-}
-
-header button:hover {
-  background: #0056b3;
 }
 
 main {
@@ -47,11 +44,12 @@ main {
 }
 
 footer {
-  background: #f8f9fa;
+  background: var(--hover-bg);
   padding: 1rem;
   text-align: center;
-  border-top: 1px solid #ddd;
-  color: #666;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-color);
+  opacity: 0.8;
 }
 
 footer p {

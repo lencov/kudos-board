@@ -12,7 +12,7 @@
 .BoardList-header h2 {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #1f2937;
+    color: var(--text-color);
     margin: 0;
 }
 
@@ -26,13 +26,14 @@
 .BoardList-empty {
     text-align: center;
     padding: 4rem 2rem;
-    color: #6b7280;
+    color: var(--text-color);
+    opacity: 0.6;
 }
 
 .BoardList-empty h3 {
     font-size: 1.25rem;
     font-weight: 600;
-    color: #374151;
+    color: var(--text-color);
     margin: 0 0 0.5rem 0;
 }
 

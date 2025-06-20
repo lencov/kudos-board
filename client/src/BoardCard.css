@@ -1,5 +1,6 @@
 .BoardCard {
-    background: #fff;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
     border-radius: 12px;
     overflow: hidden;
     display: flex;
@@ -12,6 +13,7 @@
 }
 
 .BoardCard:hover {
+    border-color: var(--button-bg);
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
@@ -32,13 +34,14 @@
 .BoardTitle {
     font-size: 1.25rem;
     font-weight: 600;
-    color: #1f2937;
+    color: var(--text-color);
     margin: 0 0 0.5rem 0;
     line-height: 1.3;
 }
 
 .BoardDescription {
-    color: #6b7280;
+    color: var(--text-color);
+    opacity: 0.7;
     font-size: 0.9rem;
     line-height: 1.4;
     margin: 0 0 1rem 0;
@@ -64,7 +67,8 @@
 }
 
 .BoardAuthor {
-    color: #9ca3af;
+    color: var(--text-color);
+    opacity: 0.6;
     font-size: 0.8rem;
 }
 
@@ -77,8 +81,8 @@
 }
 
 .delete-button {
-    background: rgba(255, 255, 255, 0.9);
-    border: none;
+    background: var(--hover-bg);
+    border: 1px solid var(--border-color);
     border-radius: 50%;
     width: 36px;
     height: 36px;
@@ -101,25 +105,14 @@
 }
 
 .BoardCategory[data-category="thank you"] {
-    background: dcfce7;
+    background: #dcfce7;
     color: #16a34a;
 }
 
-.BoardCategory[data-category="congratulations"] {
-    background: #fee2e2;
-    transform: scale(1.1);
+.BoardCategory[data-category="inspiration"] {
+    background: #e0f2fe;
+    color: #0277bd;
 }
-
-.BoardCategory[data-category="celebration"] {
-    background: #fef3c7;
-    color: #d97706;
-}
-
-.BoardCategory[data-category="thank you"] {
-    background:#dcfce7;
-    color: #16a34a;
-}
-
 
 @media (max-width: 768px) {
     .BoardCard-img {
@@ -132,5 +125,5 @@
 
     .BoardDescription {
         font-size: 0.85rem;
-            }
+    }
 }

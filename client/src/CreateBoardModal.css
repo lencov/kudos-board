@@ -12,10 +12,13 @@
 }
 
 .modal-content {
-    background: white;
+    background: var(--bg-color);
+    color: var(--text-color);
     padding: 20px;
     width: 400px;
     max-width: 90%;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
 }
 
 .close-button {
@@ -24,10 +27,12 @@
     border: none;
     font-size: 20px;
     cursor: pointer;
+    color: var(--text-color);
 }
 
 .modal-content h2 {
     margin-top: 0;
+    color: var(--text-color);
 }
 
 .error-message {
@@ -35,6 +40,7 @@
     color: red;
     padding: 10px;
     margin-bottom: 10px;
+    border-radius: 4px;
 }
 
 .form-group {
@@ -44,6 +50,7 @@
 .form-group label {
     display: block;
     margin-bottom: 5px;
+    color: var(--text-color);
 }
 
 .form-group input,
@@ -51,7 +58,10 @@
 .form-group select {
     width: 100%;
     padding: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border-radius: 4px;
     box-sizing: border-box;
 }
 
@@ -65,15 +75,17 @@
     padding: 8px 16px;
     margin-left: 10px;
     cursor: pointer;
+    border-radius: 4px;
 }
 
 .cancel-button {
-    background: #f0f0f0;
-    border: 1px solid #ccc;
+    background: var(--hover-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
 }
 
 .submit-button {
-    background: #007bff;
+    background: var(--button-bg);
     color: white;
     border: none;
 }

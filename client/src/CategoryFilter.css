@@ -1,16 +1,16 @@
 .category-filter {
     margin: 1rem 0;
     padding: 1rem;
-    border: 1px solid #e0e0e0;
+    border: 1px solid var(--border-color);
     border-radius: 8px;
-    background-color: #f9f9f9;
+    background-color: var(--hover-bg);
 }
 
 .category-filter h3 {
     margin: 0 0 1rem 0;
     font-size: 1rem;
     font-weight: 600;
-    color: #333;
+    color: var(--text-color);
 }
 
 .category-options {
@@ -30,7 +30,7 @@
 }
 
 .category-option:hover {
-    background-color: #e9ecef;
+    background-color: var(--bg-color);
 }
 
 .category-option input[type="checkbox"] {
@@ -40,13 +40,15 @@
 
 .category-label {
     font-size: 0.9rem;
-    color: #495057;
+    color: var(--text-color);
+    opacity: 0.8;
     user-select: none;
 }
 
 .category-option input[type="checkbox"]:checked + .category-label {
-    color: #007bff;
+    color: var(--button-bg);
     font-weight: 500;
+    opacity: 1;
 }
 
 @media (max-width: 768px) {

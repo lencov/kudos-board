@@ -25,7 +25,7 @@ function BoardCard({
                 <h3 className='BoardTitle'>{board.title}</h3>
                 <p className='BoardDescription'>{board.description}</p>
                 <div className='BoardCard-footer'>
-                    <span className='BoardCategory'>{board.category}</span>
+                    <span className='BoardCategory' data-category={board.category}>{board.category}</span>
                     {board.author && <span className='BoardAuthor'>By: {board.author}</span>}
                 </div>
             </div>
