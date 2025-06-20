@@ -140,8 +140,8 @@ function BoardDetail({ board, onBack }) {
                                                     className="card-gif"
                                                 />
                                             )}
-                                            {card.author && (
-                                                <p className="card-author">- {card.author}</p>
+                                            {card.owner && (
+                                                <p className="card-author">- {card.owner}</p>
                                             )}
                                         </div>
                                         <div className="card-actions">

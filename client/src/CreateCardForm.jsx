@@ -8,7 +8,7 @@ function CreateCardForm({ boardId, onClose, onCardCreated }) {
         title: '',
         description: '',
         gifURL: '',
-        author: ''
+        owner: ''
     });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
@@ -44,7 +44,7 @@ function CreateCardForm({ boardId, onClose, onCardCreated }) {
                 title: formData.title.trim(),
                 description: formData.description.trim(),
                 gifURL: formData.gifURL.trim(),
-                author: formData.author.trim() || null,
+                owner: formData.owner.trim() || null,
                 boardId: boardId
             });
             onCardCreated(newCard);
@@ -108,12 +108,12 @@ function CreateCardForm({ boardId, onClose, onCardCreated }) {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="author">Author (Optional)</label>
+                        <label htmlFor="owner">Author (Optional)</label>
                         <input
                             type="text"
-                            id="author"
-                            name="author"
-                            value={formData.author}
+                            id="owner"
+                            name="owner"
+                            value={formData.owner}
                             onChange={handleInputChange}
                             placeholder="Your name"
                         />
