@@ -2,6 +2,8 @@ import './BoardDetail.css';
 import { useState, useEffect } from 'react';
 import { getCardsByBoardId, likeCard, pinCard, deleteCard } from './kudosBoardService';
 import { fallbackImage } from './constants';
+import CreateCardForm from './CreateCardForm';
+import sortCards from './utils'
 
 function BoardDetail({ board, onBack }) {
     const [cards, setCards] = useState([]);
@@ -14,7 +16,8 @@ function BoardDetail({ board, onBack }) {
                 setLoading(true);
                 try {
                     const cardResults = await getCardsByBoardId(board.id);
-                    setCards(cardResults || []);
+                    const sortedCards = sortCards(cardResults || []);
+                    setCards(sortedCards);
                 } catch (error) {
                     console.error('Failed to fetch cards:', error);
                     setCards([]);
@@ -31,7 +34,10 @@ function BoardDetail({ board, onBack }) {
     };
 
     const handleCardCreated = (newCard) => {
-        setCards(prevCards => [newCard, ...prevCards]);
+        setCards(prevCards => {
+            const updatedCards = [newCard, ...prevCards];
+            return sortCards(updatedCards);
+        });
         setShowCreateCardForm(false);
     };
 
@@ -49,7 +55,7 @@ function BoardDetail({ board, onBack }) {
             const updatedCard = await likeCard(cardId);
             setCards(prevCards =>
                 prevCards.map(card =>
-                    card.id === cardId ? { ...card, upvotes: updatedCard.upvotes } : card
+                    card.id === cardId ? { ...card, likeCount: updatedCard.likeCount } : card
                 )
             );
         } catch (error) {
@@ -60,11 +66,12 @@ function BoardDetail({ board, onBack }) {
     const handlePinCard = async (cardId) => {
         try {
             const updatedCard = await pinCard(cardId);
-            setCards(prevCards =>
-                prevCards.map(card =>
+            setCards(prevCards => {
+                const updatedCards = prevCards.map(card =>
                     card.id === cardId ? { ...card, isPinned: updatedCard.isPinned, pinnedAt: updatedCard.pinnedAt } : card
-                )
-            );
+                );
+                return sortCards(updatedCards);
+            });
         } catch (error) {
             console.error('Failed to pin/unpin card:', error);
         }
@@ -141,7 +148,7 @@ function BoardDetail({ board, onBack }) {
                                                 className="upvote-button"
                                                 onClick={() => handleUpvoteCard(card.id)}
                                             >
-                                                👍 {card.upvotes || 0}
+                                                👍 {card.likeCount || 0}
                                             </button>
                                             <button
                                                 className="pin-button"
@@ -166,12 +173,12 @@ function BoardDetail({ board, onBack }) {
                 )}
             </div>
 
-            {/* TODO: Add CreateCardForm component */}
             {showCreateCardForm && (
-                <div className="create-card-modal">
-                    <div>Create Card Form Placeholder</div>
-                    <button onClick={() => setShowCreateCardForm(false)}>Cancel</button>
-                </div>
+                <CreateCardForm
+                    boardId={board.id}
+                    onClose={() => setShowCreateCardForm(false)}
+                    onCardCreated={handleCardCreated}
+                />
             )}
         </div>
     );
