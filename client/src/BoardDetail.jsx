@@ -1,6 +1,6 @@
 import './BoardDetail.css';
 import { useState, useEffect } from 'react';
-import { getCardsByBoardId } from './kudosBoardService';
+import { getCardsByBoardId, likeCard, pinCard, deleteCard } from './kudosBoardService';
 import { fallbackImage } from './constants';
 
 function BoardDetail({ board, onBack }) {
@@ -35,8 +35,39 @@ function BoardDetail({ board, onBack }) {
         setShowCreateCardForm(false);
     };
 
-    const handleCardDeleted = (deletedCardId) => {
-        setCards(prevCards => prevCards.filter(card => card.id !== deletedCardId));
+    const handleCardDeleted = async (deletedCardId) => {
+        try {
+            await deleteCard(deletedCardId);
+            setCards(prevCards => prevCards.filter(card => card.id !== deletedCardId));
+        } catch (error) {
+            console.error('Failed to delete card:', error);
+        }
+    };
+
+    const handleUpvoteCard = async (cardId) => {
+        try {
+            const updatedCard = await likeCard(cardId);
+            setCards(prevCards =>
+                prevCards.map(card =>
+                    card.id === cardId ? { ...card, upvotes: updatedCard.upvotes } : card
+                )
+            );
+        } catch (error) {
+            console.error('Failed to upvote card:', error);
+        }
+    };
+
+    const handlePinCard = async (cardId) => {
+        try {
+            const updatedCard = await pinCard(cardId);
+            setCards(prevCards =>
+                prevCards.map(card =>
+                    card.id === cardId ? { ...card, isPinned: updatedCard.isPinned, pinnedAt: updatedCard.pinnedAt } : card
+                )
+            );
+        } catch (error) {
+            console.error('Failed to pin/unpin card:', error);
+        }
     };
 
     if (!board) {
@@ -106,13 +137,24 @@ function BoardDetail({ board, onBack }) {
                                             )}
                                         </div>
                                         <div className="card-actions">
-                                            <button className="upvote-button">
+                                            <button
+                                                className="upvote-button"
+                                                onClick={() => handleUpvoteCard(card.id)}
+                                            >
                                                 👍 {card.upvotes || 0}
                                             </button>
-                                            {card.isPinned && (
-                                                <span className="pinned-indicator">📌</span>
-                                            )}
-                                            <button className="delete-card-button">
+                                            <button
+                                                className="pin-button"
+                                                onClick={() => handlePinCard(card.id)}
+                                                title={card.isPinned ? "Unpin card" : "Pin card"}
+                                            >
+                                                {card.isPinned ? '📌' : '📍'}
+                                            </button>
+                                            <button
+                                                className="delete-card-button"
+                                                onClick={() => handleCardDeleted(card.id)}
+                                                title="Delete card"
+                                            >
                                                 🗑️
                                             </button>
                                         </div>
