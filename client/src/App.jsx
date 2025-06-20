@@ -4,6 +4,7 @@ import SearchBar from './SearchBar'
 import CategoryFilter from './CategoryFilter'
 import BoardList from './BoardList'
 import BoardDetail from './BoardDetail'
+import CreateBoardModal from './CreateBoardModal'
 import { getAllBoards, getBoardsByCategory, searchBoards, deleteBoard } from './kudosBoardService'
 import { BOARD_CATEGORIES, VIEW_TYPES } from './constants'
 
@@ -120,9 +121,11 @@ const App = () => {
                     />
                 )}
 
-                {/* TODO: Add CreateBoardModal component */}
                 {showCreateBoardModal && (
-                    <div>Create Board Modal Placeholder</div>
+                    <CreateBoardModal
+                        onClose={() => setShowCreateBoardModal(false)}
+                        onBoardCreated={handleBoardCreated}
+                    />
                 )}
             </main>
 
