@@ -6,6 +6,7 @@ const errorHandler = require('./middleware/errorHandler');
 
 const boardRoutes = require('./routes/boardRoutes');
 const cardRoutes = require('./routes/cardRoutes');
+const commentRoutes = require('./routes/commentRoutes');
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -19,6 +20,7 @@ app.get('/api/health', (_, res) => {
 
 app.use('/api/boards', boardRoutes);
 app.use('/api/cards', cardRoutes);
+app.use('/api/comments', commentRoutes);
 
 app.use(errorHandler);
 

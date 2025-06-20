@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 import { getCardsByBoardId, likeCard, pinCard, deleteCard } from './kudosBoardService';
 import { fallbackImage } from './constants';
 import CreateCardForm from './CreateCardForm';
-import sortCards from './utils'
+import Comments from './Comments';
+import { sortCards } from './utils'
 
 function BoardDetail({ board, onBack }) {
     const [cards, setCards] = useState([]);
@@ -165,6 +166,7 @@ function BoardDetail({ board, onBack }) {
                                                 🗑️
                                             </button>
                                         </div>
+                                        <Comments cardId={card.id} />
                                     </div>
                                 ))}
                             </div>
