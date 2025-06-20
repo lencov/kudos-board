@@ -19,8 +19,30 @@ export const getAllBoards = async () => {
   return await handleResponse(response);
 };
 
-export const getBoardsByCategory = async (category) => {
-  const url = buildUrl(API_ENDPOINTS.BOARDS, `?category=${encodeURIComponent(category)}`);
+export const getBoardsByCategory = async (categories) => {
+  const categoryParam = Array.isArray(categories)
+    ? categories.join(',')
+    : categories;
+  const url = buildUrl(API_ENDPOINTS.BOARDS, `?category=${encodeURIComponent(categoryParam)}`);
+  const response = await fetch(url);
+  return await handleResponse(response);
+};
+
+export const searchBoards = async (searchQuery, categories = null) => {
+  const params = new URLSearchParams();
+
+  if (searchQuery && searchQuery.trim()) {
+    params.append('search', searchQuery.trim());
+  }
+
+  if (categories) {
+    const categoryParam = Array.isArray(categories)
+      ? categories.join(',')
+      : categories;
+    params.append('category', categoryParam);
+  }
+
+  const url = buildUrl(API_ENDPOINTS.BOARDS, `?${params.toString()}`);
   const response = await fetch(url);
   return await handleResponse(response);
 };
