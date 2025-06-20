@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+import SearchBar from './SearchBar'
 import { getAllBoards, getBoardsByCategory, searchBoards } from './kudosBoardService'
 import { BOARD_CATEGORIES, VIEW_TYPES } from './constants'
 
@@ -78,8 +79,8 @@ const App = () => {
                 <h1>Kudos Board</h1>
                 {currentView === VIEW_TYPES.HOME && (
                     <>
-                        {/* TODO: add SearchBar component */}
-                        {/* TODO: ddd CategoryFilter component */}
+                        <SearchBar onSubmit={handleSearchSubmit} onClear={handleClearSearch} />
+                        {/* TODO: Add CategoryFilter component */}
                         <button onClick={handleCreateBoard}>Create New Board</button>
                     </>
                 )}
