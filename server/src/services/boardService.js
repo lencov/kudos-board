@@ -1,11 +1,11 @@
 const { PrismaClient } = require('../generated/prisma');
+const { recentLimit } = require('../../constants');
 const prisma = new PrismaClient();
 
 class BoardService {
 
-    // get all boards with optional category filter
-    async getAllBoards(category) {
-        const filter = this.buildCategoryFilter(category);
+    async getBoards(categories, search) {
+        const { filter, limit } = this.buildFilter(categories, search);
 
         const boards = await prisma.board.findMany({
             where: filter,
@@ -13,6 +13,7 @@ class BoardService {
                 cards: true,
             },
             orderBy: { createdAt: 'desc' },
+            ...(limit && { take: limit }),
         });
 
         return boards;
@@ -59,13 +60,41 @@ class BoardService {
         return deletedBoard;
     }
 
-    buildCategoryFilter(category) {
-        // TODO: add filter for recent boards
-        if (category !== 'all'){
-            return { category: category };
-        }else{
-            return {};
+    buildFilter(categories, search) {
+        const filter = {};
+        let isRecent = false;
+        let limit = null;
+
+        if (categories) {
+            const categoryArray = categories.split(',').map(cat => cat.trim());
+
+            isRecent = categoryArray.includes('recent');
+
+            const validCategories = categoryArray.filter(cat =>
+                cat !== 'all' && cat !== 'recent'
+            );
+
+            if (validCategories.length > 0) {
+                if (validCategories.length === 1) {
+                    filter.category = validCategories[0];
+                } else {
+                    filter.category = { in: validCategories };
+                }
+            }
+
+            if (isRecent) {
+                limit = recentLimit;
+            }
         }
+
+        if (search && search.trim()) {
+            filter.title = {
+                contains: search.trim(),
+                mode: 'insensitive'
+            };
+        }
+
+        return { filter, limit };
     }
 }
 

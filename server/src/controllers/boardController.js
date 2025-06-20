@@ -3,11 +3,10 @@ const boardService = require('../services/boardService');
 class BoardController {
 
     // GET /api/boards
-    async getAllBoards(req, res, next) {
+    async getBoards(req, res, next) {
         try {
-            const { category } = req.query;
-            const boards = await boardService.getAllBoards(category);
-
+            const { category, search } = req.query;
+            const boards = await boardService.getBoards(category, search);
             res.json(boards);
         } catch (error) {
             next(error); // passes error to error handle in middleware

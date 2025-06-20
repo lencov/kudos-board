@@ -12,18 +12,50 @@ GET http://localhost:3001/api/boards
 
 ###
 
-### Get All Boards by Category (celebration)
-GET http://localhost:3001/api/boards?category=celebration
+### Get All Boards by Category
+GET http://localhost:3001/api/boards?category={category name}
 
 ###
 
-### Get All Boards by Category (thank you)
-GET http://localhost:3001/api/boards?category=thank%20you
+### Get Recent Boards (6 most recently created)
+GET http://localhost:3001/api/boards?category=recent
 
 ###
 
-### Get All Boards by Category (inspiration)
-GET http://localhost:3001/api/boards?category=inspiration
+### Get Multiple Categories
+GET http://localhost:3001/api/boards?category=celebration,thank%20you
+
+###
+
+### Get Multiple Categories with Recent (returns 6 most recent from selected categories)
+GET http://localhost:3001/api/boards?category=celebration,inspiration,recent
+
+###
+
+### Search Boards by Title
+GET http://localhost:3001/api/boards?search=team
+
+###
+
+### Search Boards by Title with Single Category Filter
+GET http://localhost:3001/api/boards?category=celebration&search=team
+
+###
+
+### Search Boards by Title with Multiple Categories
+GET http://localhost:3001/api/boards?category=celebration,thank%20you&search=team
+
+###
+
+### Search Recent Boards by Title
+GET http://localhost:3001/api/boards?category=recent&search=celebration
+
+###
+
+### Search Multiple Categories with Recent (returns 6 most recent matching search)
+GET http://localhost:3001/api/boards?category=celebration,inspiration,recent&search=team
+
+###
 
 ###
 
