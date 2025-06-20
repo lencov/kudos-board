@@ -22,7 +22,7 @@ GET http://localhost:3001/api/cards/{card-id}
 
 ###
 
-### Create New Card - Celebration
+### Create New Card
 POST http://localhost:3001/api/cards
 Content-Type: application/json
 
@@ -31,34 +31,6 @@ Content-Type: application/json
   "description": "Thank you for your outstanding contribution to the project. Your dedication really shows!",
   "gifURL": "https://media.giphy.com/media/26u4cqiYI30juCOGY/giphy.gif",
   "owner": "John Doe",
-  "boardId": "{board-id}"
-}
-
-###
-
-### Create New Card - Thank You
-POST http://localhost:3001/api/cards
-Content-Type: application/json
-
-{
-  "title": "Grateful for Your Help",
-  "description": "Your support during the deadline crunch was incredible. Couldn't have done it without you!",
-  "gifURL": "https://media.giphy.com/media/3oz8xAFtqoOUUrsh7W/giphy.gif",
-  "owner": "Jane Smith",
-  "boardId": "{board-id}"
-}
-
-###
-
-### Create New Card - Inspiration
-POST http://localhost:3001/api/cards
-Content-Type: application/json
-
-{
-  "title": "Keep Going!",
-  "description": "Remember: 'The only way to do great work is to love what you do.' - Steve Jobs",
-  "gifURL": "https://media.giphy.com/media/l2JhOVy5NaPuqvZmg/giphy.gif",
-  "owner": "Alex Johnson",
   "boardId": "{board-id}"
 }
 

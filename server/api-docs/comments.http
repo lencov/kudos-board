@@ -1,0 +1,129 @@
+### Comment API Testing Guide
+
+# Base URL: http://localhost:3001
+
+### Health Check
+GET http://localhost:3001/api/health
+
+###
+
+### Get All Comments
+GET http://localhost:3001/api/comments
+
+###
+
+### Get All Comments by Card ID
+GET http://localhost:3001/api/comments?cardId={card-id}
+
+###
+
+### Get Comment by ID
+GET http://localhost:3001/api/comments/{comment-id}
+
+###
+
+### Create New Comment
+POST http://localhost:3001/api/comments
+Content-Type: application/json
+
+{
+  "message": "This is such an inspiring message! Thank you for sharing this with the team.",
+  "author": "John Doe",
+  "cardId": "{card-id}"
+}
+
+###
+
+### Create New Comment - Minimal Required Fields
+POST http://localhost:3001/api/comments
+Content-Type: application/json
+
+{
+  "message": "Great job on this!",
+  "cardId": "{card-id}"
+}
+
+###
+
+### Update Comment
+PUT http://localhost:3001/api/comments/{comment-id}
+Content-Type: application/json
+
+{
+  "message": "Updated comment: This is even more amazing than I initially thought!",
+  "author": "Updated Author"
+}
+
+###
+
+### Delete Comment by ID
+DELETE http://localhost:3001/api/comments/{comment-id}
+
+###
+
+### Test Cases for Validation Errors
+
+### Create Comment - Missing Message (should return 400 error)
+POST http://localhost:3001/api/comments
+Content-Type: application/json
+
+{
+  "author": "Test User",
+  "cardId": "{card-id}"
+}
+
+###
+
+### Create Comment - Missing Card ID (should return 400 error)
+POST http://localhost:3001/api/comments
+Content-Type: application/json
+
+{
+  "message": "Comment without card ID",
+  "author": "Test User"
+}
+
+###
+
+### Create Comment - Empty Message (should return 400 error)
+POST http://localhost:3001/api/comments
+Content-Type: application/json
+
+{
+  "message": "",
+  "cardId": "{card-id}"
+}
+
+###
+
+### Create Comment - Message Too Long (should return 400 error)
+POST http://localhost:3001/api/comments
+Content-Type: application/json
+
+{
+  "message": "This is a very long message that exceeds the maximum allowed length. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+  "cardId": "{card-id}"
+}
+
+###
+
+### Get Non-existent Comment (should return 404 error)
+GET http://localhost:3001/api/comments/non-existent-id
+
+###
+
+### Update Non-existent Comment (should return 404 error)
+PUT http://localhost:3001/api/comments/non-existent-id
+Content-Type: application/json
+
+{
+  "message": "Updated message",
+  "author": "Updated Author"
+}
+
+###
+
+### Delete Non-existent Comment (should return error)
+DELETE http://localhost:3001/api/comments/non-existent-id
+
+###
