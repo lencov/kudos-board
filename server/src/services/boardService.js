@@ -1,5 +1,5 @@
 const { PrismaClient } = require('../generated/prisma');
-const { resentLimit } = require('../../constants');
+const { recentLimit } = require('../../constants');
 const prisma = new PrismaClient();
 
 class BoardService {
@@ -83,7 +83,7 @@ class BoardService {
             }
 
             if (isRecent) {
-                limit = 6;
+                limit = recentLimit;
             }
         }
 
