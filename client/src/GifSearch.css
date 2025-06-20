@@ -1,0 +1,97 @@
+.gif-search {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.gif-search-header h3 {
+    margin: 0 0 6px 0;
+    font-size: 14px;
+}
+
+.gif-search-form {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.gif-search-input {
+    flex: 1;
+    padding: 4px 6px;
+    font-size: 13px;
+}
+
+.gif-search-button,
+.gif-clear-button {
+    padding: 4px 8px;
+    font-size: 13px;
+}
+
+.gif-clear-button {
+    background-color: #6c757d;
+}
+
+.selected-gif-preview {
+    margin-bottom: 8px;
+    padding: 6px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.selected-gif-preview h4 {
+    margin: 0 0 4px 0;
+    font-size: 12px;
+}
+
+.selected-gif-image {
+    max-width: 100px;
+    max-height: 60px;
+}
+
+.gif-results {
+    max-height: 120px;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 4px;
+}
+
+.gif-loading,
+.gif-error,
+.no-gifs {
+    text-align: center;
+    padding: 10px;
+    font-size: 13px;
+}
+
+.gif-results-header h4 {
+    margin: 0 0 6px 0;
+    font-size: 12px;
+}
+
+.gif-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap: 4px;
+}
+
+.gif-item {
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.gif-item.selected {
+    border-color: var(--button-bg);
+}
+
+.gif-thumbnail {
+    width: 100%;
+    height: 45px;
+    object-fit: cover;
+    display: block;
+}
+
+.gif-overlay {
+    display: none;
+}

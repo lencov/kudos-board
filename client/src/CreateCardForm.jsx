@@ -1,6 +1,7 @@
 import './CreateCardForm.css';
 import { useState } from 'react';
 import { createCard } from './kudosBoardService';
+import GifSearch from './GifSearch';
 
 function CreateCardForm({ boardId, onClose, onCardCreated }) {
     const [formData, setFormData] = useState({
@@ -99,19 +100,11 @@ function CreateCardForm({ boardId, onClose, onCardCreated }) {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="gifURL">GIF URL *</label>
-                        <input
-                            type="url"
-                            id="gifURL"
-                            name="gifURL"
-                            value={formData.gifURL}
-                            onChange={handleInputChange}
-                            placeholder="https://example.com/gif.gif"
-                            required
+                        <label>Select a GIF *</label>
+                        <GifSearch
+                            onGifSelect={(gifUrl) => setFormData(prev => ({ ...prev, gifURL: gifUrl }))}
+                            selectedGifUrl={formData.gifURL}
                         />
-                        <small className="form-help">
-                            You can search for GIFs on <a href="https://giphy.com" target="_blank" rel="noopener noreferrer">GIPHY</a> and copy the image URL
-                        </small>
                     </div>
 
                     <div className="form-group">
