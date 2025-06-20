@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import SearchBar from './SearchBar'
 import CategoryFilter from './CategoryFilter'
-import { getAllBoards, getBoardsByCategory, searchBoards } from './kudosBoardService'
+import BoardList from './BoardList'
+import { getAllBoards, getBoardsByCategory, searchBoards, deleteBoard } from './kudosBoardService'
 import { BOARD_CATEGORIES, VIEW_TYPES } from './constants'
 
 const App = () => {
@@ -70,8 +71,14 @@ const App = () => {
         setShowCreateBoardModal(false);
     };
 
-    const handleBoardDeleted = (deletedBoardId) => {
-        setBoards(prevBoards => prevBoards.filter(board => board.id !== deletedBoardId));
+    const handleBoardDeleted = async (deletedBoardId) => {
+        try {
+            await deleteBoard(deletedBoardId);
+            setBoards(prevBoards => prevBoards.filter(board => board.id !== deletedBoardId));
+        } catch (error) {
+            console.error('Failed to delete board:', error);
+            // TODO: Add proper error handling/notification
+        }
     };
 
     return (
@@ -99,9 +106,11 @@ const App = () => {
                         {loading ? (
                             <div>Loading boards...</div>
                         ) : (
-                            <>
-                                {/* TODO: add BoardList component */}
-                            </>
+                            <BoardList
+                                boards={boards}
+                                onBoardClick={handleBoardClick}
+                                onBoardDelete={handleBoardDeleted}
+                            />
                         )}
                     </>
                 )}
