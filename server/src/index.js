@@ -13,7 +13,7 @@ const port = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 
-app.get('/api/health', (req, res) => {
+app.get('/api/health', (_, res) => {
     res.json({ status: 'OK', message: 'Kudos Board API running' });
 });
 
