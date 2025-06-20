@@ -22,5 +22,5 @@ export const DISPLAY_TYPES = {
 
 export const VIEW_TYPES = {
   HOME: 'home',
-  BOARD_DETAIL: 'board-detail'
+  BOARD_DETAILS: 'board-detail'
 };
