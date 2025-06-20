@@ -4,7 +4,7 @@ const boardController = require('../controllers/boardController');
 const { validateBoard } = require('../middleware/validators');
 
 // GET /api/boards - Get all boards
-router.get('/', boardController.getAllBoards);
+router.get('/', boardController.getBoards);
 
 // GET /api/boards/:id - Get board by id
 router.get('/:id', boardController.getBoardById);
